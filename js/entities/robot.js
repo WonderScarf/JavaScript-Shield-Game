@@ -1,43 +1,28 @@
-const shieldXColor = "#5BD0FB";
-const shieldYColor = "#F5ABB9";
+const shieldColor="#FB869C";
 
 class Robot extends Rectangle{
-    constructor(x, y, canvas, width, height, rotation, canCollide, movementSpeed, color) {
+    constructor(x, y, canvas, width, height, canCollide, movementSpeed, color) {
         
-        super(x, y, canvas, width, height, rotation, canCollide, color);
+        super(x, y, canvas, width, height, canCollide, color);
 
         this.movementSpeed = movementSpeed;
         this.currentDirection = {x:0, y:0}
 
-        this.shields = new Array(4);
+
+        this.shield = new Shield(this.x,this.y, this.canvas, this.width, this.height, true, shieldColor, 60);
     }
 
     update(){
         this.x += this.movementSpeed * this.currentDirection.x;
         this.y += this.movementSpeed * this.currentDirection.y;
-        
+
+        //this.shield.update(this.x, this.y);
+
+        this.shield.update(this.x, this.y);
+
+        console.log(this.shield.x);
+        console.log(this.shield.y);
         this.draw();
-
-        this.shields.forEach(shield => {
-            shield.x += this.movementSpeed * this.currentDirection.x;
-            shield.y += this.movementSpeed * this.currentDirection.y;
-            shield.draw();
-        });
-        
-        //this.drawShields();
-        
-        
-    }
-
-    initializeShields(){
-        for (let i = 0;  i < this.shields.length;  i++){
-            if(i % 2 == 0){
-                this.shields[i] = new Shield(this.x + 10, this.y, this.canvas, this.width, 20, 0, true, shieldXColor, 10);
-            }
-            else{
-                this.shields[i] = new Shield(this.x + 10, this.y + 10, this.canvas, this.width, 20, 0, true, shieldYColor, 10);
-            }
-        }
     }
 
     place(xNew, yNew){
@@ -51,16 +36,31 @@ class Robot extends Rectangle{
         if(this.canCollide){
             if((this.x + this.width + (this.movementSpeed * this.currentDirection.x)) > this.canvas.width){ 
                 this.x = this.canvas.width - this.width;
+                /*this.shields.forEach(shield => {
+                    shield.x -= this.movementSpeed * this.currentDirection.x + 1;
+                });*/
             }
-            else if(this.x - (this.movementSpeed * this.currentDirection.x) < 0){ 
+            
+            if(this.x - (this.movementSpeed * this.currentDirection.x) < 0){ 
                 this.x = 1;
+                /*this.shields.forEach(shield => {
+                    shield.x -= 2 * this.movementSpeed * this.currentDirection.x;
+                });*/
             }
     
-            if(this.y - (this.movementSpeed * this.currentDirection.y) < 0){ 
+            if(this.y - (this.movementSpeed * this.currentDirection.y) < 0){
                 this.y = 1;
+                /*this.shields.forEach(shield => {
+                    shield.y -= 2 * this.movementSpeed * this.currentDirection.y;
+                });*/
             }
+            
             if((this.y + this.height + (this.movementSpeed * this.currentDirection.y)) > this.canvas.height){ 
                 this.y = this.canvas.height - this.height;
+                /*this.shields.forEach(shield => {
+                    shield.y -= this.movementSpeed * this.currentDirection.y;
+                });*/
+
             }
         }
     }
