@@ -4,24 +4,22 @@ class Archer {
         this.arrowMoveSpeed = arrowMoveSpeed
         this.canvas = canvas;
         this.arrowSize = arrowSize;
+
+        this.maxArrows = 40;
+
         this.arrows = new Array(startcount);
         this.genereateArrowArray();
     }
 
     genereateArrowArray(){
-        //let arrows = [];
-        //console.log(Array.isArray(arrows));
-        console.log(this.arrows.length);
         let i = 0;
         while(i < this.arrows.length){
             this.arrows[i] = this.generateArrow();
-            console.log(this.arrows[i]);
             i++;
         }
     }
 
     generateArrow(){
-        console.log("apple");
         let spawn = this.randomBorderSpawn();
         return new Arrow(spawn.x, spawn.y, this.canvas, this.arrowSize, this.arrowMoveSpeed, this.changeToRandomColor(), spawn.directionX, spawn.directionY);
     }
@@ -30,43 +28,37 @@ class Archer {
         this.arrows.push(this.generateArrow());
     }
 
-    removeOutofBoundArrows(index){
-        
-    }
+    removeOutofBoundArrows(){
+        this.arrows = this.arrows.filter( (arrow) => arrow.checkCanvasPass() )
+    };
+    
 
     randomBorderSpawn(){
-        let spawnX = 0;
-        let spawnY = 0;
+        let spawnX = this.arrowSize;
+        let spawnY = this.arrowSize;
         let directionX = 0; 
         let directionY = 0;
 
         switch( Math.floor(Math.random() * 4) ){
             case 0:
                 spawnX = this.arrowSize + Math.random() * (this.canvas.width - (this.arrowSize * 2));
-                spawnY = 0;
                 directionY = 1;
-                directionX = 0;
                 break;
             case 1:
-                spawnX =  this.arrowSize + Math.random() * (this.canvas.width - (this.arrowSize * 2));
-                spawnY = this.canvas.height;
+                spawnX = this.arrowSize + Math.random() * (this.canvas.width - (this.arrowSize * 2));
+                spawnY = this.canvas.height - this.arrowSize;
                 directionY = -1;
-                directionX = 0;
                 break;
             case 2:
-                spawnX = 0;
-                spawnY =  this.arrowSize +  Math.random() * (this.canvas.height - (this.arrowSize * 2));
-                directionY = 0;
+                spawnY = this.arrowSize +  Math.random() * (this.canvas.height - (this.arrowSize * 2));
                 directionX = 1;
                 break;
             case 3:
-                spawnX = this.canvas.width;
-                spawnY =  this.arrowSize +  Math.random() * (this.canvas.height - (this.arrowSize * 2));
-                directionY = 0;                
+                spawnX = this.canvas.width - this.arrowSize;
+                spawnY =  this.arrowSize +  Math.random() * (this.canvas.height - (this.arrowSize * 2));             
                 directionX = -1;
                 break;
         }
-        console.log(spawnX, spawnY, directionX, directionY);
 
         return {x: spawnX, y: spawnY, directionX: directionX, directionY: directionY};
     }
@@ -83,6 +75,8 @@ class Archer {
     }
 
     update(){
+        this.removeOutofBoundArrows();
+
         this.arrows.forEach(arrow => {
             arrow.update();
         });
