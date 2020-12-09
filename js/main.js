@@ -35,23 +35,25 @@ let GetKeyUp = (event) => {
 
 }
 
-function animate() {
+let updateArrows = () => {
+    
+};
 
+function animate() {
     requestAnimationFrame(animate);
     firstCanvasContext.clearRect(0, 0, firstCanvas.width, firstCanvas.height);
     testRobot.canvasCollideFix();
-    
+    archer.update();
     testRobot.update();
-
-    //console.log(testRobot.x,testRobot.y);
 }
 
 //creating robot
-let testRobot = new Robot(250, 250, firstCanvas, 50, 50, true, 3 , robotColor);
-firstCanvas.focus();
+let testRobot = new Robot(250, 250, firstCanvas, 50, 50, true, 2 , 3 , robotColor);
+let archer = new Archer(firstCanvas, 25, 1);
 
+
+firstCanvas.focus();
 firstCanvas.addEventListener('keydown', GetKeyPush);
 firstCanvas.addEventListener('keyup', GetKeyUp);
-
 animate();
 

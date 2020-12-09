@@ -22,6 +22,7 @@ class Shield extends Rectangle{
 
         this.x = holderX + (this.distance * this.direction.x);
         this.y = holderY + (this.distance * this.direction.y);
+        this.canvasCollideFix()
         
         if (this.enabled){
             this.draw();
@@ -34,5 +35,22 @@ class Shield extends Rectangle{
         //play a sound here.
 
         return 1;
+    }
+
+    canvasCollideFix(){
+        if(this.canCollide){
+            if(this.x + this.width > this.canvas.width){ 
+                this.enabled = false;
+            }
+            else if(this.x < 0){ 
+                this.enabled = false;
+            }
+            else if(this.y < 0){
+                this.enabled = false;
+            }
+            else if((this.y + this.height) > this.canvas.height){ 
+                this.enabled = false;
+            }
+        }
     }
 }
