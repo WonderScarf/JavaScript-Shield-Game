@@ -48,8 +48,11 @@ function animate() {
     testRobot.canvasCollideFix();
     archer.update();
     testRobot.update();
-    testRobot.arrowCollideFix(archer.arrows)
+    testRobot.arrowCollideFix(archer.arrows);
 
+    if(testRobot.isDead){
+        //initiate game over
+    }
 }
 
 //creating robot

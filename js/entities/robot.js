@@ -9,6 +9,7 @@ class Robot extends Rectangle{
         this.direction = {x:0, y:0}
         this.hp = hp;
 
+        this.blockedCount=0;
         this.shield = new Shield(this.x,this.y, this.canvas, this.width, this.height, true, shieldColor, 60);
     }
 
@@ -16,11 +17,10 @@ class Robot extends Rectangle{
         this.x += this.movementSpeed * this.direction.x;
         this.y += this.movementSpeed * this.direction.y;
 
-        //this.shield.update(this.x, this.y);
+        //updates shield (which draws/checks for collision)
+        this.shield.update(this);
 
-        this.shield.update(this.x, this.y);
-
-        //console.log(this.shield.x, this.shield.y);
+        //draws the robot out
         this.draw();
     }
 
@@ -51,15 +51,25 @@ class Robot extends Rectangle{
     }
 
     arrowCollideFix(arrows){
-        
         arrows.forEach( (arrow, index ) => {
+            
             if( this.isTouch(arrow)){
                 this.hp--;
-                console.log(this.hp);
+                arrows.splice(index, 1);
+            }
+            else if( this.shield.isTouch(arrow)){
+                this.shield.blockedCount++;
                 arrows.splice(index, 1);
             }
             //console.log(this.hp);
         });
+    }
+
+    isDead(){
+        if(this.hp <= 0){
+            return true
+        }
+        return false
     }
 
     

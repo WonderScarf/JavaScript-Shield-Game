@@ -3,12 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/main.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Acme&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css" >
 </head>
 
 <body>
+  
+  <!--The things to be displayed before the game is shown. Includes stuff like the titles and maker-->
+  <header>
+    <h1 class="majorTitle">ShieldBot and The Infinite Rainbow Projectiles of Unknown Origin</h1>    
+    <h3 class="minorTitle">Made By Tyler Messina-Katunar (Wonderscarf)</h3>
+  </header>
+  
+  <!--Holds the canvas (and thus the game!)-->
+  <section class="canvas_holder">
     <canvas width="750" height="500" tabindex='1'></canvas>
     
+    
+    <!--Displays the stats of the game-->
+    <section class="stats_holder">
+      
+      <h2 class="middleTitle">Stats</h3>
+      
+      <div class="stat">
+        <h3 class="minorTitle">Hit Points:</h3>
+        <h3 class="minorTitle" id="hp_tally">13</h3>
+      </div>
+
+      <div class="stat">
+        <h3 class="minorTitle">Block Count:</h3>
+        <h3 class="minorTitle" id="block_tally">43</h3>
+      </div>
+    
+    </section>
+
+  </section>
+
+
+  <!--The greater holder that displays lots of info to help the player out (controls, story, and a )-->
+  <section class="info_holder">
+
+    <h2 class="middleTitle">Controls</h3>
+    
+    <!--Holds the contols of how to play-->
+    <section id="controls_holder">
+      
+      <div class="key_holder">
+        <h3 class="minorTitle">Move Bot</h3>
+        <h3 class="minorTitle">-></h3>
+        <h3 class="minorTitle">W, A, S, D</h3>
+      </div>
+
+      <div class="key_holder">
+        <h3 class="minorTitle">Move Shield</h3>
+        <h3 class="minorTitle">-></h3>
+        <h3 class="minorTitle">Arrow Keys</h3>
+      </div>
+
+      <div class="key_holder">
+        <h3 class="minorTitle">Boost</h3>
+        <h3 class="minorTitle">-></h3>
+        <h3 class="minorTitle">Alternating Move Bot Keys</h3>
+      </div>
+
+      <div class="key_holder">
+        <h3 class="minorTitle">Throw Shield</h3>
+        <h3 class="minorTitle">-></h3>
+        <h3 class="minorTitle">Alternating Move Shield Keys</h3>
+      </div>
+
+    </section>
+    
+    <h2 class="middleTitle">How To Play</h3>
+    <!--Discribes what a bunch of rules-->
+    <section class="text_holder"> 
+      <p class="text">In this game your goal is to block as many projectiles as you can while not getting hit yourself. To do this you have a magic shield of which you can "throw" or hold to block the rainbow fire. Throwing the shield will hold it in place hovering farther in the direction thrown allowing the blocking of far away projectiles.Each block grants you a point and each time you are shot it removes a hit point. If your hit points reaches 0 you will break down and get a game over.</p>
+    </section>
+    
+    <h2 class="middleTitle">Story</h3>
+
+    <!--Holds the story of ShieldBot, his magical shield Regulus and the situation he finds himself in-->
+    <section class="text_holder">
+      <p class="text">You play as ShieldBot a machine built long ago in a past so far it's belived to be myth. The robot wanders the world looking for it's lost treasure. Using a magical shield called Regulus he protects all those in danger he comes across even if they usually see him as a threat. He doesn't know but the treasure he has been looking for this whole time is Regulus, just don't tell him. Right now he finds himself in a situation where a bunch of random, seemingly non physical things are shooting at him. What are they? Why are they breaking laws of physics? Well why not play and find out?</p>
+    </section>
+    
+  </section>
+
     <script src="./js/entities/thing.js"></script>
     <script src="./js/entities/rectangle.js"></script>
     <script src="./js/entities/arrow.js"></script>
@@ -16,6 +97,5 @@
     <script src="./js/entities/shield.js"></script>
     <script src="./js/archer.js"></script>
     <script src="./js/main.js"></script>
-
 </body>
 </html>

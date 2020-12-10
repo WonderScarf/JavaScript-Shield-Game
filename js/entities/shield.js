@@ -18,23 +18,15 @@ class Shield extends Rectangle{
         }
     }
 
-    update(holderX, holderY){
+    update(robot){
 
-        this.x = holderX + (this.distance * this.direction.x);
-        this.y = holderY + (this.distance * this.direction.y);
+        this.x = robot.x + (this.distance * this.direction.x);
+        this.y = robot.y + (this.distance * this.direction.y);
         this.canvasCollideFix()
-        
+
         if (this.enabled){
             this.draw();
         }
-    }
-
-    blockAttack(){
-        this.enabled=false;
-            
-        //play a sound here.
-
-        return 1;
     }
 
     canvasCollideFix(){
@@ -53,4 +45,6 @@ class Shield extends Rectangle{
             }
         }
     }
+
+    
 }

@@ -76,7 +76,6 @@ class Archer {
 
     update(){
         this.removeOutofBoundArrows();
-
         this.arrows.forEach(arrow => {
             arrow.update();
         });

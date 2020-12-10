@@ -1,3 +1,173 @@
-canvas{
-    background-color: #323232;
+/*General Stuff and Saved Variables to be Used When Needed*/
+
+/*Variables*/
+:root {
+    /*Colors to use at will*/
+    --blossom: #deb5bd;
+    --tosca: #8f3e4c;
+    --baltic_sea:#2c242f;
+    --russet:#845e5a;
+    --green_glow:#6ECE21;
+    
+    /*Custum fonts using google's API*/
+    --cute_font: 'Fredoka One', cursive;
+    --less_cute_font: 'Acme', sans-serif; 
 }
+
+/*Selects all stuff and removes spacing and makes it border-box*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/*Defaults set to things*/
+body {
+    /*Standard colors*/
+    background-color: var(--baltic_sea);
+    color: var(--blossom);
+
+    /*Standard used font*/
+    font-family: var(--cute_font);
+}
+
+/*Remove link styles and color(they stand out for no reason)*/
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*Remove list styles(they are hard to manage and look odd)*/
+ul {
+    list-style: none;
+}
+  
+/*Canvas Stuff...*/
+
+.canvas_holder {
+    /*Allows the canvas to stay centered!
+    width: 100%;
+    text-align:center;*/
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+canvas {
+    /*Allows it to stay centered!*/
+    display: inline;
+    /*The outline for the canvas!*/
+    outline: var(--blossom) 3px solid;
+}
+
+
+canvas:hover {
+    cursor: pointer;
+}
+/*The top of screen stuff*/
+
+header {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+
+/*The holders and stuff of stats*/
+
+/*The holder of game stats*/
+.stats_holder{
+    padding-top: .75rem;
+    width: 750px;
+    
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+/*For the Title*/
+.stats_holder .middleTitle{
+    width: 30%;
+    align-self: center;
+    padding: 0;
+}
+
+/*For the stat divs*/
+.stat{
+    display:flex;
+    width: 25%;
+    align-items: center;
+    justify-content:space-evenly;
+    align-self: center;
+}
+
+/*The Game Information at the bottom*/
+
+/*The holder of holders of game information like controls and what not*/
+.info_holder{
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.info_holder section{
+    padding: 1rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+
+
+}
+
+.key_holder{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+}
+
+.key_holder .minorTitle{
+    width: 20%;
+    margin: .5rem;
+}
+
+
+
+.text_holder{
+    display: flex;
+    justify-content: center;
+    margin-right: 2.5rem;
+    margin-left: 2.5rem;
+}
+
+/*Titles and texts*/
+
+/*For things of high importance that need a title*/
+.majorTitle{
+    font-size: 3rem;
+}
+
+/*For things of medium importance that need a title*/
+.middleTitle{
+    padding-top: .5rem;
+    font-size: 2rem;
+}
+
+/*For things of minor importance that need a title*/
+.minorTitle{
+    padding-top: .5rem;
+    font-size: 1.25rem;
+}
+
+/*For paragraphs and words that are not titles*/
+.text{
+    padding-top: .25rem;
+    font-size: 1rem;
+}
+
