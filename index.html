@@ -9,13 +9,13 @@
 </head>
 
 <body>
-  
+
   <!--The things to be displayed before the game is shown. Includes stuff like the titles and maker-->
   <header>
     <h1 class="majorTitle">ShieldBot and The Infinite Rainbow Projectiles of Unknown Origin</h1>    
     <h3 class="minorTitle">Made By Tyler Messina-Katunar (Wonderscarf)</h3>
   </header>
-  
+
   <!--Holds the canvas (and thus the game!)-->
   <section class="canvas_holder">
     <canvas width="750" height="500" tabindex='1'></canvas>
@@ -28,12 +28,12 @@
       
       <div class="stat">
         <h3 class="minorTitle">Hit Points:</h3>
-        <h3 class="minorTitle" id="hp_tally">13</h3>
+        <h3 class="minorTitle" id="hp_tally">0</h3>
       </div>
 
       <div class="stat">
         <h3 class="minorTitle">Block Count:</h3>
-        <h3 class="minorTitle" id="block_tally">43</h3>
+        <h3 class="minorTitle" id="block_tally">0</h3>
       </div>
     
     </section>
@@ -73,6 +73,18 @@
         <h3 class="minorTitle">Alternating Move Shield Keys</h3>
       </div>
 
+      <div class="key_holder">
+        <h3 class="minorTitle">Start/Restart</h3>
+        <h3 class="minorTitle">-></h3>
+        <h3 class="minorTitle">R</h3>
+      </div>
+
+      <div class="key_holder">
+        <h3 class="minorTitle">Quit</h3>
+        <h3 class="minorTitle">-></h3>
+        <h3 class="minorTitle">Q</h3>
+      </div>
+
     </section>
     
     <h2 class="middleTitle">How To Play</h3>
@@ -89,6 +101,22 @@
     </section>
     
   </section>
+
+  <!--Sounds To be used in game-->
+
+  <audio id="blockSound">
+    <source src="./css/sounds/clank1.wav" type="audio/wav">
+    <source src="./css/sounds/horn.mp3" type="audio/mp3">
+  </audio>
+
+  <audio id="hitSound">
+    <source src="./css/sounds/clankzap.mp3" type="audio/wav">
+    <source src="./css/sounds/clankzap.wav" type="audio/mp3">
+  </audio>
+
+  <audio id="backgroundMusic" loop autoplay>
+    <source src="./css/sounds/love_colored_master_spark_zun.mp3" type="audio/mp3">
+  </audio>
 
     <script src="./js/entities/thing.js"></script>
     <script src="./js/entities/rectangle.js"></script>

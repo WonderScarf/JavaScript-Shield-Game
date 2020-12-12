@@ -4,13 +4,60 @@ const firstCanvasContext = firstCanvas.getContext('2d');
 const robotColor = "#FFFFFF";
 const speedArrow = 5;
 const robotSpeed = 3;
-const arrowSpawnRate = 250;
+const arrowSpawnRate = 200;
 
 
 //controls
 const controls = { up:"w", down:"s", left:"a", right:"d"};
 const shieldControls = { up:"ArrowUp", down:"ArrowDown", left:"ArrowLeft", right:"ArrowRight"};
+const altControls = {restart:"r", quit:"q"}
 
+let isPlaying = false;
+
+let GameOverScreen = () => {
+    //shows game over
+    firstCanvasContext.save();  
+    firstCanvasContext.fillStyle = "#deb5bd"
+    firstCanvasContext.font = '3rem Fredoka One';
+    firstCanvasContext.fillText("Game Over", firstCanvas.width/3,firstCanvas.height/4);
+    
+    firstCanvasContext.fillStyle = "#deb5bd"
+    firstCanvasContext.font = '1.25rem Fredoka One';
+    firstCanvasContext.fillText("You Burnt Out... Try Again With 'R' or Quit With 'Q'", firstCanvas.width/6, firstCanvas.height/3);
+    firstCanvasContext.restore();
+}
+
+let UpdateGameScreen = () => {
+    //The updating of things
+    testRobot.canvasCollideFix();
+    archer.update();
+    testRobot.update();
+    testRobot.arrowCollideFix(archer.arrows);
+
+    //updates tally
+    document.getElementById("block_tally").innerText = testRobot.shield.blockedCount;
+    document.getElementById("hp_tally").innerText = testRobot.hp;
+
+}
+
+let MainMenuScreen = () => {
+    isPlaying = false;
+    let msg = "To start Press 'R'!";
+    firstCanvasContext.fillStyle = "#deb5bd";
+
+
+    firstCanvasContext.font = '1.25rem Fredoka One';
+    firstCanvasContext.fillText(msg, (firstCanvas.width /2) - (firstCanvasContext.measureText(msg).width /2), 250);
+    firstCanvasContext.restore();
+    
+}
+
+let ResetGame = () => {
+    testRobot.reset();
+    archer.reset();
+}
+
+//Get key inputs (for controls)
 let GetKeyPush = (event) => {
     if (event.key == controls.up) {testRobot.direction.y=-1;}
     if (event.key == controls.down) {testRobot.direction.y=1;}
@@ -25,6 +72,10 @@ let GetKeyPush = (event) => {
 }
 
 let GetKeyUp = (event) => {
+
+    if (event.key == altControls.restart) {isPlaying = true; ResetGame();}
+    if (event.key == altControls.quit) {isPlaying = false; MainMenuScreen();}
+
     if (event.key == controls.up) {testRobot.direction.y++;}
     if (event.key == controls.down) {testRobot.direction.y--;}
     if (event.key == controls.left) {testRobot.direction.x++;}
@@ -38,20 +89,18 @@ let GetKeyUp = (event) => {
 
 }
 
-let updateArrows = () => {
-    
-};
 
 function animate() {
     requestAnimationFrame(animate);
     firstCanvasContext.clearRect(0, 0, firstCanvas.width, firstCanvas.height);
-    testRobot.canvasCollideFix();
-    archer.update();
-    testRobot.update();
-    testRobot.arrowCollideFix(archer.arrows);
-
-    if(testRobot.isDead){
-        //initiate game over
+    if(!isPlaying){
+        MainMenuScreen();
+    }
+    else if(testRobot.isDead()){
+        GameOverScreen();
+    }
+    else{
+        UpdateGameScreen();
     }
 }
 
@@ -60,10 +109,9 @@ let testRobot = new Robot(250, 250, firstCanvas, 50, 50, true, robotSpeed , 3 , 
 let archer = new Archer(firstCanvas, 25, speedArrow);
 
 setInterval( () => {
-    if(archer.arrows.length < archer.maxArrows){
+    if(archer.arrows.length < archer.maxArrows && isPlaying){
         archer.addArrow();
     }
-    
 }, arrowSpawnRate);
 
 firstCanvas.focus();

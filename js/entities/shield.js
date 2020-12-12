@@ -1,12 +1,31 @@
+const clank1 = document.getElementById('blockSound');
+
 class Shield extends Rectangle{
-    constructor(x, y, canvas, width, height, canCollide, color , distance, hp) {
+    constructor(x, y, canvas, width, height, canCollide, color , distance) {
                 
         super(x, y, canvas, width, height, canCollide, color);
+        
         this.direction = {x: 0, y: 0};
+        
         this.enabled = false;
+        
         this.distance = distance;
-        this.hp = hp;
+        
+        this.blockedCount = 0;
+        
+        this.blockSound = clank1;
+    }
 
+    reset(){
+        this.x = this.spawnX;
+        this.y = this.spawnY;
+
+        this.direction.x=0;
+        this.direction.y=0;
+        
+        this.enabled = false;
+
+        this.blockedCount = 0;
     }
 
     toggle(on){

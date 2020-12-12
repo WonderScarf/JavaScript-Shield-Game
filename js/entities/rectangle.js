@@ -6,7 +6,6 @@ class Rectangle extends Thing{
 
         this.area = width * height;
         this.perimeter = (width * 2) + (height * 2);
-
         this.color = color;
     }
 

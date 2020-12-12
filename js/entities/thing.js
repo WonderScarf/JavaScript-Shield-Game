@@ -4,6 +4,10 @@ class Thing {
         //The current x/y location on the canvas
         this.x=x;
         this.y=y;
+        
+        //The spawns of x/y location on the canvas
+        this.spawnX=x;
+        this.spawnY=y;
 
         //the canvas to 
         this.canvas=canvas;

@@ -1,15 +1,21 @@
 const shieldColor="#FB869C";
+const clankzap = document.getElementById('hitSound');
 
 class Robot extends Rectangle{
     constructor(x, y, canvas, width, height, canCollide, movementSpeed, hp, color) {
-        
         super(x, y, canvas, width, height, canCollide, color);
 
         this.movementSpeed = movementSpeed;
+        
+        //direction of robot
         this.direction = {x:0, y:0}
+        
+        //hit points
         this.hp = hp;
-
-        this.blockedCount=0;
+        this.hpMax= hp;
+        
+        this.hitSound = clankzap;
+        
         this.shield = new Shield(this.x,this.y, this.canvas, this.width, this.height, true, shieldColor, 60);
     }
 
@@ -28,6 +34,18 @@ class Robot extends Rectangle{
         this.x=xNew;
         this.y+=yNew;
         this.draw();
+    }
+
+    reset(){
+        this.direction.x=0;
+        this.direction.y=0;
+        
+        this.hp=this.hpMax;
+        
+        this.x = this.spawnX;
+        this.y = this.spawnY;
+        
+        this.shield.reset();
     }
     
     canvasCollideFix(){
@@ -54,11 +72,21 @@ class Robot extends Rectangle{
         arrows.forEach( (arrow, index ) => {
             
             if( this.isTouch(arrow)){
+                
+                //plays hit sound effect
+                this.hitSound.play();
+                //plays hit sound effect
                 this.hp--;
+                
                 arrows.splice(index, 1);
             }
             else if( this.shield.isTouch(arrow)){
-                this.shield.blockedCount++;
+                
+                //plays block sound effect
+                this.shield.blockSound.play();
+                //adds to block count
+                this.shield.blockedCount += 1;
+                
                 arrows.splice(index, 1);
             }
             //console.log(this.hp);

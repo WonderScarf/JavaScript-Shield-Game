@@ -32,6 +32,11 @@ class Archer {
         this.arrows = this.arrows.filter( (arrow) => arrow.checkCanvasPass() )
     };
     
+    reset(){
+        this.arrows.splice(0,this.arrows.length)
+        this.arrows.length = startcount;
+        this.genereateArrowArray();
+    }
 
     randomBorderSpawn(){
         let spawnX = this.arrowSize;

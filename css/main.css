@@ -41,6 +41,12 @@ a {
 ul {
     list-style: none;
 }
+
+/*Displays no things for audio*/
+audio {
+    display:none;
+}
+
   
 /*Canvas Stuff...*/
 
