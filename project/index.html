@@ -16,6 +16,7 @@
     <h3 class="minorTitle">Made By Tyler Messina-Katunar (Wonderscarf)</h3>
   </header>
 
+
   <!--Holds the canvas (and thus the game!)-->
   <section class="canvas_holder">
     <canvas width="750" height="500" tabindex='1'></canvas>
@@ -99,11 +100,16 @@
     <section class="text_holder">
       <p class="text">You play as ShieldBot a machine built long ago in a past so far it's belived to be myth. The robot wanders the world looking for it's lost treasure. Using a magical shield called Regulus he protects all those in danger he comes across even if they usually see him as a threat. He doesn't know but the treasure he has been looking for this whole time is Regulus, just don't tell him. Right now he finds himself in a situation where a bunch of random, seemingly non physical things are shooting at him. What are they? Why are they breaking laws of physics? Well why not play and find out?</p>
     </section>
-    
+
+    <h2 class="middleTitle">Credits</h3>
+
+    <!--Holds credits-->
+    <section class="text_holder">
+      <p class="text">Made by Tyler Messina-Katunar (Wonderscarf). Special Thanks to Ethan Wheeler for picking the sound effects, Zun for the music used and Zach Leffevre for gameplay feedback.</p>
+    </section>
   </section>
-
+  
   <!--Sounds To be used in game-->
-
   <audio id="blockSound">
     <source src="./css/sounds/clank1.wav" type="audio/wav">
     <source src="./css/sounds/horn.mp3" type="audio/mp3">
@@ -114,8 +120,9 @@
     <source src="./css/sounds/clankzap.wav" type="audio/mp3">
   </audio>
 
-  <audio id="backgroundMusic" loop autoplay>
+  <audio id="backgroundMusic" loop>
     <source src="./css/sounds/love_colored_master_spark_zun.mp3" type="audio/mp3">
+    <source src="./css/sounds/love_colored_master_spark_zun.wav" type="audio/wav">
   </audio>
 
     <script src="./js/entities/thing.js"></script>

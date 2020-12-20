@@ -5,6 +5,7 @@ const robotColor = "#FFFFFF";
 const speedArrow = 5;
 const robotSpeed = 3;
 const arrowSpawnRate = 200;
+const backgroundMusic = document.getElementById("backgroundMusic")
 
 
 //controls
@@ -100,9 +101,13 @@ function animate() {
         GameOverScreen();
     }
     else{
+        if(!backgroundMusic.isPlaying){
+            backgroundMusic.play();
+        }
         UpdateGameScreen();
     }
 }
+
 
 //creating robot
 let testRobot = new Robot(250, 250, firstCanvas, 50, 50, true, robotSpeed , 3 , robotColor);
@@ -117,4 +122,5 @@ setInterval( () => {
 firstCanvas.focus();
 firstCanvas.addEventListener('keydown', GetKeyPush);
 firstCanvas.addEventListener('keyup', GetKeyUp);
+//document.getElementById("backgroundMusic").play();
 animate();

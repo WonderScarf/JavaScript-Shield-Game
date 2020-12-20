@@ -143,8 +143,6 @@ header {
     margin: .5rem;
 }
 
-
-
 .text_holder{
     display: flex;
     justify-content: center;
@@ -176,4 +174,3 @@ header {
     padding-top: .25rem;
     font-size: 1rem;
 }
-
